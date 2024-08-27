@@ -7,3 +7,5 @@ curl --header "Content-Type: application/json" --request GET http://localhost:80
 curl --header "Content-Type: application/json" --request GET http://localhost:8081/users
 
 curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba", "userEmail": "user1@web.com", "userPassword": "user1"}' http://localhost:8081/permissions
+
+curl --header "Content-Type: application/json" --request PUT --data '{"authorizerEmail":"admin1@web.com", "authorizerPassword": "admin1"}' http://localhost:8081/permissions/1/approbedBy
