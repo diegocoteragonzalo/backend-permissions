@@ -1,1 +1,9 @@
 curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba","userId":1}' http://localhost:8081/permissions
+
+curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba","userId":1, "userEmail": "user1@web.com", "userPassword": "user1"}' http://localhost:8081/permissions
+
+curl --header "Content-Type: application/json" --request GET http://localhost:8081/permissions
+
+curl --header "Content-Type: application/json" --request GET http://localhost:8081/users
+
+curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba", "userEmail": "user1@web.com", "userPassword": "user1"}' http://localhost:8081/permissions
