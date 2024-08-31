@@ -1,4 +1,4 @@
-curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba","userId":1}' http://localhost:8081/permissions
+curl --header "Content-Type: application/json" --request POST --data '{"email":"user1@web.com","password":"user1"}' http://localhost:8081/login
 
 curl --header "Content-Type: application/json" --request POST --data '{"text":"prueba","userId":1, "userEmail": "user1@web.com", "userPassword": "user1"}' http://localhost:8081/permissions
 
