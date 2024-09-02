@@ -1,6 +1,7 @@
 const express = require("express")
 const routerPermissions = express.Router()
 
+let jwt = require("jsonwebtoken")
 let permissions = require("../data/permissions")
 let users = require("../data/users")
 let authorizers = require("../data/authorizers")
@@ -38,16 +39,16 @@ routerPermissions.put("/:id/approbedBy", (req, res) => {
 
 routerPermissions.post("/", (req, res) => {
 	let text = req.body.text
-	let userEmail = req.body.userEmail
-	let userPassword = req.body.userPassword
+
+	let apiKey = req.query.apiKey
 	
-	
-	//validación
-	let listUsers = users.filter( u => u.email == userEmail && u.password == userPassword)
-	
-	if( listUsers.length == 0){
-		return res.status(401).json({error: "no autorizado"})
+	let infoApiKey
+	try {
+		infoApiKey = jwt.verify(apiKey, "secret");
 	}
+	catch(errors){
+		res.status(401).json({ error: "invalid token"});
+	}	
 	
 	let errors = []
 	
@@ -65,7 +66,7 @@ routerPermissions.post("/", (req, res) => {
 		id: lastId+1,
 		text: text,
 		approbedBy: [],
-		userId: listUsers[0].id
+		userId: infoApiKey.id
 	})
 	
 	res.json({ id: lastId+1 })
